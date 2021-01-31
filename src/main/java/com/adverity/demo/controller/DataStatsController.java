@@ -74,7 +74,10 @@ public class DataStatsController {
                 fromDate, toDate, minClicks, maxClicks, minImpressions, maxImpressions,
                 minCTR, maxCTR, groupBy, sortBy, page, pageSize);
 
-        return dataStatsService.getStats(request);
+        if(request.getGroupBy() == null || request.getGroupBy().size() == 0)
+            return dataStatsService.getStats(request);
+        else
+            return dataStatsService.getStatsGrouped(request);
     }
 
 }
